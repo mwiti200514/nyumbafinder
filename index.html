@@ -107,7 +107,7 @@ input,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;fon
 
 <div id="sec-admin" class="hidden">
   <div id="adminLogin" class="card">
-    <h2>Admin Login</h2><p class="muted">Password is admin123</p>
+    <h2>Admin Login</h2>
     <label>Password</label><input id="adminPass" type="password" placeholder="Enter password">
     <div style="margin-top:12px"><button class="btn btn-blue" onclick="adminLogin()">Login</button></div>
   </div>
@@ -236,7 +236,7 @@ function whatsapp(phone){
 }
 function adminLogin(){
   var p = document.getElementById('adminPass').value;
-  if(p==='admin123'){
+  if(p==='erick691094022mwiti'){
     document.getElementById('adminLogin').classList.add('hidden');
     document.getElementById('adminPanel').classList.remove('hidden');
     render();
