@@ -6,10 +6,9 @@
 <title>NyumbaFinder - Find Houses in Migori</title>
 <style>
 *{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#f2f4f7;color:violet}
+body{margin:0;background:#f2f4f7;color:#222}
 header{background:#0b6fa4;color:#fff;padding:18px;text-align:center}
 header h1{margin:0;font-size:28px}
-header p{margin:5px 0 0;opacity:.9}
 .tabs{display:flex;gap:8px;justify-content:center;padding:12px;background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 2px 5px rgba(0,0,0,.08);flex-wrap:wrap}
 .tabs button{border:none;padding:10px 18px;border-radius:20px;cursor:pointer;background:#e8eef2;font-weight:bold;font-size:15px}
 .tabs button.active{background:#0b6fa4;color:#fff}
@@ -42,34 +41,19 @@ input,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;fon
 </style>
 </head>
 <body>
-
-<header>
-<h1>🏠 NyumbaFinder</h1>
-<p>Find Houses in Migori • Kihancha • Isebania • Migori Town</p>
-</header>
+<header><h1>🏠 NyumbaFinder</h1><p>Find Houses in Migori • Kihancha • Isebania • Migori Town</p></header>
 <div id="dbStatus">🔄 Connecting to database...</div>
-
 <div class="tabs">
 <button id="tab-houses" onclick="showTab('houses')" class="active">Houses</button>
 <button id="tab-requests" onclick="showTab('requests')">Requests</button>
 <button id="tab-admin" onclick="showTab('admin')">Admin</button>
 </div>
-
-<div class="counts">
-<div>Approved Houses: <span id="cApproved">0</span></div>
-<div>Waiting Approval: <span id="cWaiting">0</span></div>
-<div>Tenant Requests: <span id="cRequests">0</span></div>
-</div>
-
+<div class="counts"><div>Approved Houses: <span id="cApproved">0</span></div><div>Waiting Approval: <span id="cWaiting">0</span></div><div>Tenant Requests: <span id="cRequests">0</span></div></div>
 <div class="wrap">
 <div id="sec-houses">
-  <div class="topbtns">
-    <button class="btn btn-blue" onclick="showForm('tenant')">🔍 I Want a House (Tenant)</button>
-    <button class="btn btn-gray" onclick="showForm('landlord')">🏠 Post a House (Landlord)</button>
-  </div>
+  <div class="topbtns"><button class="btn btn-blue" onclick="showForm('tenant')">🔍 I Want a House (Tenant)</button><button class="btn btn-gray" onclick="showForm('landlord')">🏠 Post a House (Landlord)</button></div>
   <div id="form-tenant" class="card">
-    <h2>Find Your New House</h2>
-    <p class="muted">Fill this form - we will show you only houses that match you.</p>
+    <h2>Find Your New House</h2><p class="muted">Fill this form - we will show you only houses that match you.</p>
     <div class="row">
       <div><label>Where do you want to find a house? *</label><input id="t_area" placeholder="e.g. Migori Town, Kihancha"></div>
       <div><label>Where are you currently located? *</label><input id="t_current" placeholder="e.g. Nairobi"></div>
@@ -78,14 +62,10 @@ input,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;fon
       <div><label>House Type</label><select id="t_type"><option value="">Any Type</option><option>Single Room</option><option>Bedsitter</option><option>1 Bedroom</option><option>2 Bedroom</option><option>3 Bedroom</option></select></div>
       <div><label>Your Budget</label><select id="t_budget"><option value="100000">Any Budget</option><option value="5000">Up to Ksh 5,000</option><option value="8000">Up to Ksh 8,000</option><option value="12000">Up to Ksh 12,000</option><option value="20000">Up to Ksh 20,000</option></select></div>
     </div>
-    <div class="flex" style="margin-top:14px">
-      <button class="btn btn-blue" onclick="searchHouses()">🔍 Search Houses For Me</button>
-      <button class="btn btn-green" onclick="sendRequest()">📩 Send My Request to Landlords</button>
-    </div>
+    <div class="flex" style="margin-top:14px"><button class="btn btn-blue" onclick="searchHouses()">🔍 Search Houses For Me</button><button class="btn btn-green" onclick="sendRequest()">📩 Send My Request to Landlords</button></div>
   </div>
   <div id="form-landlord" class="card hidden">
-    <h2>Post Your House</h2>
-    <p class="muted">Your house goes to Waiting Approval. Admin approves it.</p>
+    <h2>Post Your House</h2><p class="muted">Your house goes to Waiting Approval. Admin approves it.</p>
     <div class="row">
       <div><label>Your Name (Landlord) *</label><input id="l_name" placeholder="e.g. Mama Otis"></div>
       <div><label>Phone Number *</label><input id="l_phone" placeholder="07..."></div>
@@ -96,73 +76,48 @@ input,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;fon
     </div>
     <div style="margin-top:14px"><button class="btn btn-orange" onclick="postHouse()">🏠 Post My House</button></div>
   </div>
-  <h2>Available Houses</h2>
-  <div id="houseList"></div>
+  <h2>Available Houses</h2><div id="houseList"></div>
 </div>
-
 <div id="sec-requests" class="hidden">
   <div class="card"><h2>Tenant Requests</h2><div id="requestList"></div></div>
   <div class="card"><h2>Waiting Approval</h2><div id="waitingList"></div></div>
 </div>
-
 <div id="sec-admin" class="hidden">
-  <div id="adminLogin" class="card">
-    <h2>Admin Login</h2>
-    <label>Password</label><input id="adminPass" type="password" placeholder="Enter password">
-    <div style="margin-top:12px"><button class="btn btn-blue" onclick="adminLogin()">Login</button></div>
-  </div>
-  <div id="adminPanel" class="card hidden">
-    <h2>Admin Panel ✅</h2>
-    <button class="btn btn-gray" onclick="adminLogout()">Logout</button>
-    <h3 style="margin-top:16px">Waiting Houses</h3><div id="adminWaiting"></div>
-    <h3>All Houses</h3><div id="adminHouses"></div>
-  </div>
+  <div id="adminLogin" class="card"><h2>Admin Login</h2><label>Password</label><input id="adminPass" type="password" placeholder="Enter password"><div style="margin-top:12px"><button class="btn btn-blue" onclick="adminLogin()">Login</button></div></div>
+  <div id="adminPanel" class="card hidden"><h2>Admin Panel ✅</h2><button class="btn btn-gray" onclick="adminLogout()">Logout</button><h3 style="margin-top:16px">Waiting Houses</h3><div id="adminWaiting"></div><h3>All Houses</h3><div id="adminHouses"></div></div>
 </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 var SUPABASE_URL = "https://ajrebeffraevdgvtpczy.supabase.co";
 var SUPABASE_KEY = "sb_publishable_amnTlBvhksu6ZvHdlY-GGg_04p7Aroh";
-var supabaseClient = null;
-try{
-  if(window.supabase){
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  }
-}catch(e){ supabaseClient = null; }
-
+var supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 var fees = {'Bedsitter':500, '1 Bedroom':700, '2 Bedroom':1000, '3 Bedroom':1500, 'Single Room':300};
 var emojis = {'Bedsitter':'🛏️','1 Bedroom':'🏠','2 Bedroom':'🏠','3 Bedroom':'🏠','Single Room':'🚪'};
-var defaultHouses = [
-  {id:1, landlord:'Mama Otis', phone:'0711223344', location:'Kihancha, Behind Market', area:'Kihancha', type:'Bedsitter', rent:4500, status:'approved'},
-  {id:2, landlord:'Mr. Barasa', phone:'0722334455', location:'Migori Town, Nyasare Estate', area:'Migori Town', type:'1 Bedroom', rent:7000, status:'approved'},
-  {id:3, landlord:'Mrs. Achieng', phone:'0733445566', location:'Isebania, Near Border', area:'Isebania', type:'2 Bedroom', rent:10000, status:'approved'}
-];
-var houses = defaultHouses.slice();
+var houses = [];
 var requests = [];
-
-function setStatus(msg){ var el=document.getElementById('dbStatus'); if(el) el.textContent=msg; }
-
+function setStatus(m){ document.getElementById('dbStatus').textContent=m; }
 async function loadFromDB(){
-  if(!supabaseClient){ setStatus('⚠️ Using local mode'); render(); return; }
   try{
     var h = await supabaseClient.from('houses').select('*').order('id');
     var r = await supabaseClient.from('requests').select('*').order('id');
-    if(h.data && h.data.length>0) houses = h.data;
-    if(r.data) requests = r.data;
-    if(!h.data || h.data.length===0){
-      for(var i=0;i<defaultHouses.length;i++){ await supabaseClient.from('houses').insert(defaultHouses[i]); }
-      houses = defaultHouses.slice();
+    if(h.error) throw h.error;
+    if(r.error) throw r.error;
+    houses = h.data || [];
+    requests = r.data || [];
+    if(houses.length===0){
+      var defaults = [
+        {landlord:'Mama Otis', phone:'0711223344', location:'Kihancha, Behind Market', area:'Kihancha', type:'Bedsitter', rent:4500, status:'approved'},
+        {landlord:'Mr. Barasa', phone:'0722334455', location:'Migori Town, Nyasare Estate', area:'Migori Town', type:'1 Bedroom', rent:7000, status:'approved'},
+        {landlord:'Mrs. Achieng', phone:'0733445566', location:'Isebania, Near Border', area:'Isebania', type:'2 Bedroom', rent:10000, status:'approved'}
+      ];
+      var ins = await supabaseClient.from('houses').insert(defaults).select();
+      if(!ins.error) houses = ins.data; else houses = defaults;
     }
     setStatus('✅ Connected to Supabase Database - Everybody sees same houses');
-  }catch(e){ setStatus('⚠️ Database offline: ' + e.message); }
+  }catch(e){ setStatus('⚠️ Database error: ' + e.message); alert('Database load error: ' + e.message); }
   render();
 }
-async function saveHouseToDB(h){ if(!supabaseClient) return; try{ await supabaseClient.from('houses').upsert(h); }catch(e){} }
-async function saveRequestToDB(r){ if(!supabaseClient) return; try{ await supabaseClient.from('requests').upsert(r); }catch(e){} }
-async function deleteHouseFromDB(id){ if(!supabaseClient) return; try{ await supabaseClient.from('houses').delete().eq('id', id); }catch(e){} }
-async function deleteRequestFromDB(id){ if(!supabaseClient) return; try{ await supabaseClient.from('requests').delete().eq('id', id); }catch(e){} }
-
 function showTab(tab){
   document.getElementById('sec-houses').classList.toggle('hidden', tab!=='houses');
   document.getElementById('sec-requests').classList.toggle('hidden', tab!=='requests');
@@ -188,8 +143,7 @@ function searchHouses(){
     return true;
   });
   renderHouses(list);
-  if(list.length===0) alert('No houses match. Try clearing Area / Budget.');
-  else alert('Found ' + list.length + ' house(s) for you!');
+  alert(list.length===0 ? 'No houses match. Try clearing Area / Budget.' : 'Found ' + list.length + ' house(s) for you!');
 }
 async function sendRequest(){
   var area = document.getElementById('t_area').value.trim();
@@ -199,9 +153,12 @@ async function sendRequest(){
   var type = document.getElementById('t_type').value;
   var budget = document.getElementById('t_budget').value;
   if(!area || !current || !phone || !date){ alert('Please fill Area, Current Location, Phone and Date'); return; }
-  var obj = {id:Date.now(), area:area, current:current, phone:phone, date:date, type:type||'Any', budget:budget};
-  requests.push(obj); await saveRequestToDB(obj); render();
-  alert('Request sent! Saved in Supabase for everybody to see.');
+  var obj = {area:area, current:current, phone:phone, date:date, type:type||'Any', budget:budget};
+  var res = await supabaseClient.from('requests').insert([obj]).select();
+  if(res.error){ alert('FAILED to save request: ' + res.error.message); return; }
+  requests.push(res.data[0]);
+  render();
+  alert('Request SAVED in Supabase! It will stay even if you close the site.');
 }
 async function postHouse(){
   var name = document.getElementById('l_name').value.trim();
@@ -211,22 +168,30 @@ async function postHouse(){
   var type = document.getElementById('l_type').value;
   var rent = parseInt(document.getElementById('l_rent').value);
   if(!name || !phone || !location || !area || !rent){ alert('Please fill all fields'); return; }
-  var obj = {id:Date.now(), landlord:name, phone:phone, location:location, area:area, type:type, rent:rent, status:'waiting'};
-  houses.push(obj); await saveHouseToDB(obj); render();
-  alert('House posted! Waiting for Admin approval. Fee: Ksh ' + (fees[type]||500) + '. Saved to Supabase.');
+  var obj = {landlord:name, phone:phone, location:location, area:area, type:type, rent:rent, status:'waiting'};
+  var res = await supabaseClient.from('houses').insert([obj]).select();
+  if(res.error){ alert('FAILED to save house: ' + res.error.message); return; }
+  houses.push(res.data[0]);
+  render();
+  alert('House SAVED in Supabase! Waiting for Admin approval. Fee: Ksh ' + (fees[type]||500));
 }
 async function approveHouse(id){
-  var h = houses.find(function(x){ return x.id===id; });
-  if(h){ h.status='approved'; await saveHouseToDB(h); render(); alert('Approved! Now visible to everybody.'); }
+  var res = await supabaseClient.from('houses').update({status:'approved'}).eq('id', id).select();
+  if(res.error){ alert('Approve failed: ' + res.error.message); return; }
+  var h = houses.find(function(x){ return x.id===id; }); if(h) h.status='approved';
+  render(); alert('Approved! Now visible to everybody FOREVER until you delete it.');
 }
 async function rejectHouse(id){
+  var res = await supabaseClient.from('houses').delete().eq('id', id);
+  if(res.error){ alert('Delete failed: ' + res.error.message); return; }
   houses = houses.filter(function(x){ return x.id!==id; });
-  await deleteHouseFromDB(id); render(); alert('Rejected / Deleted');
+  render(); alert('Rejected / Deleted');
 }
 async function deleteHouse(id){ if(confirm('Delete this house?')){ await rejectHouse(id); } }
 async function deleteRequest(id){
-  requests = requests.filter(function(x){ return x.id!==id; });
-  await deleteRequestFromDB(id); render();
+  var res = await supabaseClient.from('requests').delete().eq('id', id);
+  if(res.error){ alert('Delete failed: ' + res.error.message); return; }
+  requests = requests.filter(function(x){ return x.id!==id; }); render();
 }
 function callPhone(phone){ window.location.href = 'tel:' + phone; }
 function whatsapp(phone){
@@ -236,26 +201,16 @@ function whatsapp(phone){
 }
 function adminLogin(){
   var p = document.getElementById('adminPass').value;
-  if(p==='erick691094022mwiti'){
-    document.getElementById('adminLogin').classList.add('hidden');
-    document.getElementById('adminPanel').classList.remove('hidden');
-    render();
-  } else { alert('Wrong password'); }
+  if(p==='admin123'){ document.getElementById('adminLogin').classList.add('hidden'); document.getElementById('adminPanel').classList.remove('hidden'); render(); }
+  else { alert('Wrong password'); }
 }
-function adminLogout(){
-  document.getElementById('adminLogin').classList.remove('hidden');
-  document.getElementById('adminPanel').classList.add('hidden');
-}
+function adminLogout(){ document.getElementById('adminLogin').classList.remove('hidden'); document.getElementById('adminPanel').classList.add('hidden'); }
 function renderHouses(list){
   var arr = list || houses.filter(function(h){ return h.status==='approved'; });
   var el = document.getElementById('houseList');
   if(arr.length===0){ el.innerHTML='<p class="muted">No approved houses yet.</p>'; return; }
   el.innerHTML = arr.map(function(h){
-    return '<div class="house"><h3>' + (emojis[h.type]||'🏠') + ' ' + h.type + ' - Ksh ' + h.rent + '/month</h3>' +
-    '<p class="muted">' + h.location + ' • ' + h.area + '</p>' +
-    '<p>Landlord: <b>' + h.landlord + '</b> • ' + h.phone + '</p>' +
-    '<span class="badge">✅ Approved</span>' +
-    '<div class="flex"><button class="btn btn-green" onclick="whatsapp(\''+h.phone+'\')">WhatsApp</button><button class="btn btn-blue" onclick="callPhone(\''+h.phone+'\')">📞 Call</button></div></div>';
+    return '<div class="house"><h3>' + (emojis[h.type]||'🏠') + ' ' + h.type + ' - Ksh ' + h.rent + '/month</h3><p class="muted">' + h.location + ' • ' + h.area + '</p><p>Landlord: <b>' + h.landlord + '</b> • ' + h.phone + '</p><span class="badge">✅ Approved</span><div class="flex"><button class="btn btn-green" onclick="whatsapp(\''+h.phone+'\')">WhatsApp</button><button class="btn btn-blue" onclick="callPhone(\''+h.phone+'\')">📞 Call</button></div></div>';
   }).join('');
 }
 function render(){
@@ -265,18 +220,10 @@ function render(){
   document.getElementById('cWaiting').textContent = waiting.length;
   document.getElementById('cRequests').textContent = requests.length;
   renderHouses();
-  document.getElementById('waitingList').innerHTML = waiting.length===0 ? '<p class="muted">No waiting houses.</p>' : waiting.map(function(h){
-    return '<div class="house"><h3>'+h.type+' - Ksh '+h.rent+'</h3><p>'+h.location+'</p><p>'+h.landlord+' • '+h.phone+'</p><span class="badge badge-wait">⏳ Waiting</span></div>';
-  }).join('');
-  document.getElementById('requestList').innerHTML = requests.length===0 ? '<p class="muted">No requests yet.</p>' : requests.map(function(r){
-    return '<div class="house"><h3>Wants: '+r.type+' in '+r.area+'</h3><p>From: '+r.current+' • Date: '+r.date+' • Budget: '+r.budget+'</p><p>Phone: '+r.phone+'</p><div class="flex"><button class="btn btn-green" onclick="whatsapp(\''+r.phone+'\')">WhatsApp</button><button class="btn btn-blue" onclick="callPhone(\''+r.phone+'\')">📞 Call</button><button class="btn btn-gray" onclick="deleteRequest('+r.id+')">Delete</button></div></div>';
-  }).join('');
-  document.getElementById('adminWaiting').innerHTML = waiting.length===0 ? '<p class="muted">None</p>' : waiting.map(function(h){
-    return '<div class="house"><h3>'+h.type+' - Ksh '+h.rent+'</h3><p>'+h.location+' • '+h.landlord+' • '+h.phone+'</p><div class="flex"><button class="btn btn-green" onclick="approveHouse('+h.id+')">Approve</button><button class="btn btn-gray" onclick="rejectHouse('+h.id+')">Reject</button></div></div>';
-  }).join('');
-  document.getElementById('adminHouses').innerHTML = houses.map(function(h){
-    return '<div class="house"><h3>'+h.type+' - Ksh '+h.rent+' ('+h.status+')</h3><p>'+h.location+' • '+h.landlord+'</p><button class="btn btn-gray" onclick="deleteHouse('+h.id+')">Delete</button></div>';
-  }).join('');
+  document.getElementById('waitingList').innerHTML = waiting.length===0 ? '<p class="muted">No waiting houses.</p>' : waiting.map(function(h){ return '<div class="house"><h3>'+h.type+' - Ksh '+h.rent+'</h3><p>'+h.location+'</p><p>'+h.landlord+' • '+h.phone+'</p><span class="badge badge-wait">⏳ Waiting</span></div>'; }).join('');
+  document.getElementById('requestList').innerHTML = requests.length===0 ? '<p class="muted">No requests yet.</p>' : requests.map(function(r){ return '<div class="house"><h3>Wants: '+r.type+' in '+r.area+'</h3><p>From: '+r.current+' • Date: '+r.date+' • Budget: '+r.budget+'</p><p>Phone: '+r.phone+'</p><div class="flex"><button class="btn btn-green" onclick="whatsapp(\''+r.phone+'\')">WhatsApp</button><button class="btn btn-blue" onclick="callPhone(\''+r.phone+'\')">📞 Call</button><button class="btn btn-gray" onclick="deleteRequest('+r.id+')">Delete</button></div></div>'; }).join('');
+  document.getElementById('adminWaiting').innerHTML = waiting.length===0 ? '<p class="muted">None</p>' : waiting.map(function(h){ return '<div class="house"><h3>'+h.type+' - Ksh '+h.rent+'</h3><p>'+h.location+' • '+h.landlord+' • '+h.phone+'</p><div class="flex"><button class="btn btn-green" onclick="approveHouse('+h.id+')">Approve</button><button class="btn btn-gray" onclick="rejectHouse('+h.id+')">Reject</button></div></div>'; }).join('');
+  document.getElementById('adminHouses').innerHTML = houses.map(function(h){ return '<div class="house"><h3>'+h.type+' - Ksh '+h.rent+' ('+h.status+')</h3><p>'+h.location+' • '+h.landlord+'</p><button class="btn btn-gray" onclick="deleteHouse('+h.id+')">Delete</button></div>'; }).join('');
 }
 loadFromDB();
 </script>
