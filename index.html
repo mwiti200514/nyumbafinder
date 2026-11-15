@@ -141,7 +141,22 @@ input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-ra
 <div style="text-align:center;font-size:12px;color:#94a3b8;margin-top:20px">NyumbaFinder • Kihancha, Migori County • Admin: 0712 345 678 • M-Pesa Till: 555777</div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAfrxrA_Hct1WRm5hXTuyI1fqqZqyJXLZc",
+    authDomain: "nyumbafinder-783ee.firebaseapp.com",
+    projectId: "nyumbafinder-783ee",
+    storageBucket: "nyumbafinder-783ee.firebasestorage.app",
+    messagingSenderId: "895575656534",
+    appId: "1:895575656534:web:747e1a7b8112209da453f7",
+    measurementId: "G-ZZ5CRV1YT0"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+  <script>
 document.addEventListener('DOMContentLoaded', function() {
   var fees = {'Bedsitter':500, '1 Bedroom':700, '2 Bedroom':1000, '3 Bedroom':1500, 'Single Room':300};
   var emojis = {'Bedsitter':'🛏️','1 Bedroom':'🏡','2 Bedroom':'🏠','3 Bedroom':'🏘️','Single Room':'🚪'};
@@ -154,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var requests = [];
   try { houses = JSON.parse(localStorage.getItem('nyumba_houses')) || defaultHouses; } catch(e){ houses = defaultHouses; }
   try { requests = JSON.parse(localStorage.getItem('nyumba_requests')) || []; } catch(e){ requests = []; }
-  function save(){ try{ localStorage.setItem('nyumba_houses', JSON.stringify(houses)); localStorage.setItem('nyumba_requests', JSON.stringify(requests)); }catch(e){} }
+function save(){ try{ localStorage.setItem('nyumba_houses', JSON.stringify(houses)); localStorage.setItem('nyumba_requests', JSON.stringify(requests)); }catch(e){} try{ db.collection('nyumba').doc('data').set({houses: houses, requests: requests}); }catch(e){} }
   function el(id){ return document.getElementById(id); }
   function showTab(tabId, btn){
     document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
