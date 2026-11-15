@@ -3,248 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NyumbaFinder - Find House in Kenya</title>
+<title>NyumbaFinder - Find Houses in Migori</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#f8fafc;padding:20px}
-.container{max-width:1100px;margin:auto}
-header{background:#0ea5e9;color:white;padding:25px;border-radius:12px;text-align:center;margin-bottom:20px}
-header h1{font-size:28px}
-.fee-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.fee{background:white;padding:15px;border-radius:12px;text-align:center;border:2px solid #e0f2fe}
-.fee b{font-size:20px;color:#0284c7;display:block}
-.fee span{font-size:12px;color:#64748b}
-.tabs{display:flex;gap:10px;margin-bottom:15px;flex-wrap:wrap}
-.tab{flex:1;padding:12px;border:none;border-radius:10px;background:white;font-weight:700;cursor:pointer;min-width:140px}
-.tab.active{background:#0ea5e9;color:white}
-.card{background:white;padding:20px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);margin-bottom:20px}
-.card h2{font-size:18px;margin-bottom:5px}
-.card p.sub{font-size:13px;color:#64748b;margin-bottom:15px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-grid .full{grid-column:span 2}
-label{font-size:13px;font-weight:600;color:#334155;display:block;margin-bottom:5px}
-input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;outline:none}
-.btn{padding:12px 18px;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
-.btn-blue{background:#0ea5e9;color:white;flex:1}
-.btn-green{background:#16a34a;color:white;flex:1}
-.btn-dark{background:#111827;color:white}
-.btn-row{display:flex;gap:10px;margin-top:15px;flex-wrap:wrap}
-.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
-.filters select,.filters input{padding:11px;border:1px solid #cbd5e1;border-radius:10px;background:white;flex:1;min-width:140px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.house{border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;background:white}
-.house-img{height:150px;background:linear-gradient(135deg,#0ea5e9,#0284c7);display:flex;align-items:center;justify-content:center;font-size:60px;color:white;position:relative}
-.house-img span{position:absolute;top:10px;right:10px;background:white;color:#0284c7;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:800}
-.house-body{padding:16px}
-.house-body h3{font-size:17px}
-.house-info{font-size:13px;color:#334155;margin:10px 0;line-height:1.7}
-.price{font-size:20px;font-weight:800;color:#0ea5e9}
-.action-row{display:flex;gap:8px;margin-top:12px}
-.action-row button{flex:1;padding:9px;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
-.call{background:#16a34a;color:white}
-.whatsapp{background:#dcfce7;color:#166534}
-.approve{background:#16a34a;color:white}
-.reject{background:#fee2e2;color:#991b1b}
-.empty{text-align:center;padding:40px;color:#94a3b8}
-.hidden{display:none}
-.alert{background:#fffbeb;border:1px solid #fde68a;padding:14px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:15px}
-.alert-green{background:#f0fdf4;border:1px solid #bbf7d0;padding:14px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:15px}
-.admin-lock{background:#fef2f2;border:1px solid #fecaca;padding:20px;border-radius:12px;text-align:center}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
-.stat{background:white;padding:15px;border-radius:12px;text-align:center}
-.stat b{font-size:22px;display:block;color:#0ea5e9}
-.stat span{font-size:12px;color:#64748b}
-.fee-box{background:#f0f9ff;border:2px dashed #0ea5e9;padding:15px;border-radius:10px;text-align:center;margin-top:15px}
-.fee-box b{font-size:22px;color:#0284c7}
-@media(max-width:650px){.grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:span 1}.fee-bar{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#f2f4f7;color:#222}
+header{background:#0b6fa4;color:#fff;padding:18px;text-align:center}
+header h1{margin:0;font-size:28px}
+header p{margin:5px 0 0;opacity:.9}
+.tabs{display:flex;gap:8px;justify-content:center;padding:12px;background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 2px 5px rgba(0,0,0,.08);flex-wrap:wrap}
+.tabs button{border:none;padding:10px 18px;border-radius:20px;cursor:pointer;background:#e8eef2;font-weight:bold;font-size:15px}
+.tabs button.active{background:#0b6fa4;color:#fff}
+.counts{display:flex;gap:10px;justify-content:center;padding:10px;flex-wrap:wrap}
+.counts div{background:#fff;padding:10px 16px;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);font-weight:bold}
+.counts span{color:#0b6fa4}
+.wrap{max-width:1000px;margin:0 auto;padding:12px}
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+h2{margin:0 0 6px}
+.muted{color:#666;font-size:14px;margin:0 0 12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:650px){.row{grid-template-columns:1fr}}
+label{display:block;font-weight:bold;font-size:14px;margin-bottom:5px}
+input,select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;font-size:15px}
+.btn{border:none;padding:13px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:16px;width:100%}
+.btn-blue{background:#0ea5e9;color:#fff}
+.btn-green{background:#16a34a;color:#fff}
+.btn-orange{background:#f97316;color:#fff}
+.btn-gray{background:#e5e7eb}
+.house{border:1px solid #eee;border-radius:10px;padding:12px;margin-bottom:10px}
+.house h3{margin:0 0 4px}
+.badge{display:inline-block;background:#dcfce7;color:#166534;padding:3px 8px;border-radius:20px;font-size:12px;font-weight:bold}
+.badge-wait{background:#fef9c3;color:#854d0e}
+.flex{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.flex button{flex:1}
+.hidden{display:none!important}
+.topbtns{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.topbtns button{flex:1}
 </style>
 </head>
 <body>
-<div class="container">
-<header><h1>🏠 NyumbaFinder</h1><p>Find a house in any area in Kenya - Without agents, without walking around</p></header>
 
-<div class="fee-bar">
-<div class="fee"><small>LANDLORD POSTING FEE</small><b>Ksh 500</b><span>Bedsitter - 30 Days</span></div>
-<div class="fee"><small>LANDLORD POSTING FEE</small><b>Ksh 700</b><span>1 Bedroom - 30 Days</span></div>
-<div class="fee"><small>LANDLORD POSTING FEE</small><b>Ksh 1000</b><span>2 Bedroom - 30 Days</span></div>
-</div>
-
-<div class="stats">
-<div class="stat"><b id="totalHouses">0</b><span>Approved Houses</span></div>
-<div class="stat"><b id="totalPending">0</b><span>Waiting Approval</span></div>
-<div class="stat"><b id="totalRequests">0</b><span>Tenant Requests</span></div>
-<div class="stat"><b id="totalAreas">0</b><span>Areas Covered</span></div>
-</div>
+<header>
+<h1>🏠 NyumbaFinder</h1>
+<p>Find Houses in Migori • Kihancha • Isebania • Migori Town</p>
+</header>
 
 <div class="tabs">
-<button class="tab active" id="tabFind">🔍 I Want a House (Tenant)</button>
-<button class="tab" id="tabPost">🏠 Post a House (Landlord)</button>
-<button class="tab" id="tabAdmin">🔐 Admin - Approve Houses (You)</button>
+<button id="tab-houses" onclick="showTab('houses')" class="active">Houses</button>
+<button id="tab-requests" onclick="showTab('requests')">Requests</button>
+<button id="tab-admin" onclick="showTab('admin')">Admin</button>
 </div>
 
-<!-- TENANT -->
-<div id="findTab">
-<div class="card">
-<h2>Find Your New House</h2><p class="sub">Fill this form - we will show you only houses that match you.</p>
-<div class="form-grid">
-<div><label>Where do you want to find a house? *</label><input type="text" id="wantArea" placeholder="e.g. Kihancha, Migori Town"></div>
-<div><label>Where are you currently located? *</label><input type="text" id="currentLocation" placeholder="e.g. I am in Kuria"></div>
-<div><label>Your Phone Number *</label><input type="tel" id="tenantPhone" placeholder="e.g. 0712 345 678"></div>
-<div><label>Day you want to enter *</label><input type="date" id="moveDate"></div>
-<div><label>House Type</label><select id="wantType"><option value="All">Any Type</option><option>Bedsitter</option><option>1 Bedroom</option><option>2 Bedroom</option><option>3 Bedroom</option><option>Single Room</option></select></div>
-<div><label>Your Budget</label><select id="wantBudget"><option value="All">Any Budget</option><option value="3000">Up to Ksh 3,000</option><option value="5000">Up to Ksh 5,000</option><option value="8000">Up to Ksh 8,000</option><option value="12000">Up to Ksh 12,000</option><option value="20000">Up to Ksh 20,000</option></select></div>
-</div>
-<div class="btn-row"><button class="btn btn-blue" id="btnSearch">🔍 Search Houses For Me</button><button class="btn btn-green" id="btnRequest">📩 Send My Request to Landlords</button></div>
-<div id="tenantMsg"></div>
-</div>
-<div class="filters">
-<select id="filterArea"><option value="All">All Areas</option></select>
-<select id="filterType2"><option value="All">All Types</option><option>Bedsitter</option><option>1 Bedroom</option><option>2 Bedroom</option><option>3 Bedroom</option></select>
-<input type="text" id="searchHouse" placeholder="Search by estate, landlord name...">
-</div>
-<div id="houseCount" style="font-size:13px;color:#64748b;margin-bottom:12px"></div>
-<div class="grid" id="houseGrid"></div>
-<div id="emptyHouse" class="empty hidden"><div style="font-size:40px">🏠</div><h3>No houses found in that area yet</h3></div>
+<div class="counts">
+<div>Approved Houses: <span id="cApproved">0</span></div>
+<div>Waiting Approval: <span id="cWaiting">0</span></div>
+<div>Tenant Requests: <span id="cRequests">0</span></div>
 </div>
 
-<!-- LANDLORD -->
-<div id="postTab" class="card hidden">
-<h2>Post Your Vacant House</h2><p class="sub">Your house will NOT go live immediately. You must pay posting fee and wait for Admin to approve it.</p>
-<div class="alert">⚠️ <b>HOW IT WORKS:</b><br>1. Fill form + Pay posting fee via M-Pesa<br>2. Enter M-Pesa code<br>3. Admin checks payment & verifies house<br>4. Admin Approves → House goes LIVE</div>
-<div class="form-grid">
-<div><label>Landlord Name *</label><input type="text" id="landlordName" placeholder="e.g. Mama Otis"></div>
-<div><label>Landlord Phone *</label><input type="tel" id="landlordPhone" placeholder="e.g. 0712 345 678"></div>
-<div><label>Exact Location / Estate *</label><input type="text" id="houseLocation" placeholder="e.g. Kihancha, Behind Market"></div>
-<div><label>Town / Area *</label><input type="text" id="houseArea" placeholder="e.g. Kihancha"></div>
-<div><label>House Type *</label><select id="houseType"><option>Bedsitter</option><option>1 Bedroom</option><option>2 Bedroom</option><option>3 Bedroom</option><option>Single Room</option></select></div>
-<div><label>Monthly Rent (Ksh) *</label><input type="number" id="houseRent" placeholder="e.g. 3500"></div>
-<div><label>Deposit (Ksh)</label><input type="number" id="houseDeposit" placeholder="e.g. 3500"></div>
-<div><label>Available From</label><input type="date" id="availableFrom"></div>
-<div><label>Water / Electricity</label><select id="houseAmenities"><option>Water + Electricity + WiFi Available</option><option>Water + Electricity</option><option>Water Only</option><option>Electricity Only</option></select></div>
-<div><label>Landmark</label><input type="text" id="houseLandmark" placeholder="e.g. Opposite Primary, Blue Gate"></div>
-<div class="full"><label>Description</label><textarea id="houseDesc" rows="3" placeholder="e.g. New building, tiled, secure..."></textarea></div>
-</div>
-<div class="fee-box"><span>Your Posting Fee To Pay:</span><br><b id="feeAmount">Ksh 500</b><br><small>Pay via M-Pesa Till: <b>555777</b> - Name: NyumbaFinder<br>Listing stays live for 30 days.</small><br><br><label style="text-align:left">M-Pesa Confirmation Code *</label><input type="text" id="mpesaCode" placeholder="Enter M-Pesa code after paying" style="text-align:center;font-weight:700"></div>
-<div class="btn-row"><button class="btn btn-green" id="btnSubmitHouse">📤 Submit House For Approval</button></div>
-<div id="landlordMsg"></div>
-</div>
+<div class="wrap">
 
-<!-- ADMIN -->
-<div id="adminTab" class="card hidden">
-<div id="adminLogin"><div class="admin-lock"><div style="font-size:40px">🔐</div><h2>Admin Only - You Are The Boss</h2><p style="font-size:13px;color:#64748b;margin:8px 0">Only you can approve houses.</p><input type="password" id="adminPass" placeholder="Enter Admin Password" style="max-width:300px;margin:auto"><br><br><button class="btn btn-dark" id="btnAdminLogin">Unlock Admin Panel</button><p style="font-size:11px;color:#94a3b8;margin-top:10px">Demo password: <b>admin123</b></p></div></div>
-<div id="adminPanel" class="hidden">
-<h2>⏳ Houses Waiting For Your Approval</h2><div id="pendingGrid"></div><div id="emptyPending" class="empty">No pending houses. All clear ✅</div>
-<h2 style="margin-top:30px">📩 Tenant Requests</h2><div id="requestList"></div><div id="emptyRequests" class="empty">No tenant requests yet.</div>
-<h2 style="margin-top:30px">✅ Live Houses</h2><div id="liveList"></div>
-</div>
-</div>
-<div style="text-align:center;font-size:12px;color:#94a3b8;margin-top:20px">NyumbaFinder • Kihancha, Migori County • Admin: 0712 345 678 • M-Pesa Till: 555777</div>
-</div>
+<!-- HOUSES TAB -->
+<div id="sec-houses">
+  <div class="topbtns">
+    <button class="btn btn-blue" onclick="showForm('tenant')">🔍 I Want a House (Tenant)</button>
+    <button class="btn btn-gray" onclick="showForm('landlord')">🏠 Post a House (Landlord)</button>
+  </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyAfrxrA_Hct1WRm5hXTuyI1fqqZqyJXLZc",
-    authDomain: "nyumbafinder-783ee.firebaseapp.com",
-    projectId: "nyumbafinder-783ee",
-    storageBucket: "nyumbafinder-783ee.firebasestorage.app",
-    messagingSenderId: "895575656534",
-    appId: "1:895575656534:web:747e1a7b8112209da453f7",
-    measurementId: "G-ZZ5CRV1YT0"
-  };
-  var db = null;
-try{ firebase.initializeApp(firebaseConfig); db = firebase.firestore(); }catch(e){ console.log("Firebase offline, using local mode"); }
-</script>
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var fees = {'Bedsitter':500, '1 Bedroom':700, '2 Bedroom':1000, '3 Bedroom':1500, 'Single Room':300};
-  var emojis = {'Bedsitter':'🛏️','1 Bedroom':'🏡','2 Bedroom':'🏠','3 Bedroom':'🏘️','Single Room':'🚪'};
-  var defaultHouses = [
-    {id:1, landlord:'Mama Otis', phone:'0711223344', location:'Kihancha, Behind Market', area:'Kihancha', type:'Bedsitter', rent:3500, deposit:3500, available:'2026-11-20', amenities:'Water + Electricity + WiFi', landmark:'Opposite Kihancha Primary, Blue Gate', desc:'New building, tiled, secure', mpesa:'QK111AAA', fee:500, status:'approved', emoji:'🛏️'},
-    {id:2, landlord:'Mr. Barasa', phone:'0722334455', location:'Migori Town, Nyasare Estate', area:'Migori Town', type:'1 Bedroom', rent:6500, deposit:6500, available:'2026-11-25', amenities:'Water + Electricity', landmark:'Near Nyasare Primary', desc:'Spacious, kitchen, balcony', mpesa:'QK222BBB', fee:700, status:'approved', emoji:'🏡'},
-    {id:3, landlord:'Mrs. Achieng', phone:'0733445566', location:'Isebania, Near Border', area:'Isebania', type:'2 Bedroom', rent:9000, deposit:9000, available:'2026-12-01', amenities:'Water + Electricity + WiFi', landmark:'Next to Isebania Market', desc:'2 bedrooms, self-contained', mpesa:'QK333CCC', fee:1000, status:'approved', emoji:'🏠'}
-  ];
-  var houses = [];
-  var requests = [];
-  try { houses = JSON.parse(localStorage.getItem('nyumba_houses')) || defaultHouses; } catch(e){ houses = defaultHouses; }
-  try { requests = JSON.parse(localStorage.getItem('nyumba_requests')) || []; } catch(e){ requests = []; }
-  if(db) db.collection('nyumba').doc('data').get().then(doc=>{ if(doc.exists){ let d=doc.data(); if(d.houses) houses=d.houses; if(d.requests) requests=d.requests; render(); } }).catch(e=>{});
-function save(){ try{ localStorage.setItem('nyumba_houses', JSON.stringify(houses)); localStorage.setItem('nyumba_requests', JSON.stringify(requests)); }catch(e){} try{ db.collection('nyumba').doc('data').set({houses: houses, requests: requests}); }catch(e){} }
-  db.collection('nyumba').doc('data').get().then(doc=>{ if(doc.exists){ let d=doc.data(); if(d.houses) houses=d.houses; if(d.requests) requests=d.requests; render(); } }).catch(e=>{});
-  function el(id){ return document.getElementById(id); }
-  function showTab(tabId, btn){
-    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
-    if(btn) btn.classList.add('active');
-    ['findTab','postTab','adminTab'].forEach(function(x){ el(x).classList.add('hidden'); });
-    el(tabId).classList.remove('hidden');
-    if(tabId==='findTab') filterHouses();
-    if(tabId==='adminTab' && !el('adminPanel').classList.contains('hidden')) renderAdmin();
-  }
-  function updateFee(){ el('feeAmount').textContent = 'Ksh ' + fees[el('houseType').value]; }
-  function updateStats(){
-    el('totalHouses').textContent = houses.filter(function(h){ return h.status==='approved'; }).length;
-    el('totalPending').textContent = houses.filter(function(h){ return h.status==='pending'; }).length;
-    el('totalRequests').textContent = requests.length;
-    var areas = [];
-    houses.forEach(function(h){ if(h.status==='approved' && areas.indexOf(h.area)===-1) areas.push(h.area); });
-    el('totalAreas').textContent = areas.length;
-  }
-  function filterHouses(){
-    var wantArea = el('wantArea').value.toLowerCase();
-    var wantType = el('wantType').value;
-    var wantBudget = el('wantBudget').value;
-    var filterArea = el('filterArea').value;
-    var filterType2 = el('filterType2').value;
-    var q = el('searchHouse').value.toLowerCase();
-    var list = houses.filter(function(h){ return h.status==='approved'; });
-    if(wantArea) list = list.filter(function(h){ return (h.area+' '+h.location).toLowerCase().indexOf(wantArea)!==-1; });
-    if(wantType!=='All') list = list.filter(function(h){ return h.type===wantType; });
-    if(wantBudget!=='All') list = list.filter(function(h){ return h.rent <= parseInt(wantBudget); });
-    if(filterArea!=='All') list = list.filter(function(h){ return h.area===filterArea; });
-    if(filterType2!=='All') list = list.filter(function(h){ return h.type===filterType2; });
-    if(q) list = list.filter(function(h){ return (h.area+' '+h.location+' '+h.landlord).toLowerCase().indexOf(q)!==-1; });
-    el('houseCount').textContent = list.length + ' approved house(s) found';
-    el('emptyHouse').classList.toggle('hidden', list.length>0);
-    var html = '';
-    list.forEach(function(h){
-      html += '<div class="house"><div class="house-img">'+h.emoji+'<span>'+h.type+'</span></div><div class="house-body"><h3>'+h.location+'</h3><small>'+h.area+' • by '+h.landlord+'</small><div class="house-info">📍 '+(h.landmark||'')+'<br>🛏️ '+h.type+' • 💧 '+h.amenities+'<br>📅 Available: '+(h.available||'Now')+'</div><div class="price">Ksh '+h.rent.toLocaleString()+' <small>/month</small></div><small>Deposit: Ksh '+h.deposit.toLocaleString()+' • '+(h.desc||'')+'</small><div class="action-row"><button class="call" data-phone="'+h.phone+'">📞 Call</button><button class="whatsapp" data-phone="'+h.phone+'" data-type="'+h.type+'" data-area="'+h.area+'">WhatsApp</button></div></div></div>';
-    });
-    el('houseGrid').innerHTML = html;
-    // Wire Call / WhatsApp buttons inside houses
-    document.querySelectorAll('.call').forEach(function(b){ b.addEventListener('click', function(){ window.location.href='tel:'+b.getAttribute('data-phone'); }); });
-    document.querySelectorAll('.whatsapp').forEach(function(b){ b.addEventListener('click', function(){ var ph=b.getAttribute('data-phone'); var msg='Hi, I saw your '+b.getAttribute('data-type')+' in '+b.getAttribute('data-area')+' on NyumbaFinder'; window.open('https://wa.me/254'+ph.slice(-9)+'?text='+encodeURIComponent(msg)); }); });
-    // Update area dropdown without losing selection
-    var areas2=[]; houses.forEach(function(h){ if(h.status==='approved' && areas2.indexOf(h.area)===-1) areas2.push(h.area); });
-    var cur = el('filterArea').value;
-    var opts='<option value="All">All Areas</option>'; areas2.forEach(function(a){ opts+='<option>'+a+'</option>'; });
-    el('filterArea').innerHTML=opts; if(areas2.indexOf(cur)!==-1) el('filterArea').value=cur;
-  }
-  function renderAdmin(){
-    var pending = houses.filter(function(h){ return h.status==='pending'; });
-    var pHtml=''; pending.forEach(function(h){ pHtml+='<div class="card" style="border:1px solid #fde68a"><b>'+h.type+' in '+h.area+' - Ksh '+h.rent+'</b><br><small>Landlord: '+h.landlord+' • '+h.phone+' • Location: '+h.location+'<br>M-Pesa: <b>'+h.mpesa+'</b> • Fee: Ksh '+h.fee+' • '+(h.desc||'')+'</small><br><br><button class="btn approve" data-id="'+h.id+'">✅ Approve & Go Live</button> <button class="btn reject" data-id="'+h.id+'">❌ Reject</button></div>'; });
-    el('pendingGrid').innerHTML=pHtml; el('emptyPending').style.display = pending.length?'none':'block';
-    var rHtml=''; requests.forEach(function(r){ rHtml+='<div class="card"><b>'+r.wantArea+'</b> - '+r.type+' - Budget: '+r.budget+'<br><small>Tenant: '+r.phone+' • Currently in: '+r.current+' • Move-in: '+r.moveDate+'</small></div>'; });
-    el('requestList').innerHTML=rHtml; el('emptyRequests').style.display = requests.length?'none':'block';
-    var live = houses.filter(function(h){ return h.status==='approved'; });
-    var lHtml=''; live.forEach(function(h){ lHtml+='<div style="font-size:13px;padding:8px;border-bottom:1px solid #eee">'+h.type+' in '+h.area+' - Ksh '+h.rent+' - '+h.landlord+' <button data-id="'+h.id+'" class="delBtn" style="float:right;color:red;border:none;background:none;cursor:pointer">Delete</button></div>'; });
-    el('liveList').innerHTML=lHtml;
-    document.querySelectorAll('.approve').forEach(function(b){ b.addEventListener('click', function(){ var id=parseInt(b.getAttribute('data-id')); var h=houses.find(function(x){ return x.id===id; }); if(h) h.status='approved'; save(); renderAdmin(); filterHouses(); alert('Approved! Now live for tenants.'); }); });
-    document.querySelectorAll('.reject').forEach(function(b){ b.addEventListener('click', function(){ var id=parseInt(b.getAttribute('data-id')); houses=houses.filter(function(x){ return x.id!==id; }); save(); renderAdmin(); }); });
-    document.querySelectorAll('.delBtn').forEach(function(b){ b.addEventListener('click', function(){ if(confirm('Delete this house?')){ var id=parseInt(b.getAttribute('data-id')); houses=houses.filter(function(x){ return x.id!==id; }); save(); renderAdmin(); filterHouses(); } }); });
-    updateStats();
-  }
-  // --- CONNECT ALL BUTTONS ---
-  el('tabFind').addEventListener('click', function(){ showTab('findTab', el('tabFind')); });
-  el('tabPost').addEventListener('click', function(){ showTab('postTab', el('tabPost')); });
-  el('tabAdmin').addEventListener('click', function(){ showTab('adminTab', el('tabAdmin')); });
-  el('wantArea').addEventListener('keyup', filterHouses);
-  el('wantType').addEventListener('change', filterHouses);
-  el('wantBudget').addEventListener('change', filterHouses);
-  el('filterArea').addEventListener('change', filterHouses);
-  el('filterType2').addEventListener('change', filterHouses);
-  el('searchHouse').addEventListener('keyup', filterHouses);
-  el('houseType').addEventListener('change', updateFee);
-  el('btnSearch').addEventListener('click', function(){ filterHouses(); el('houseGrid').scrollIntoView({behavior:'smooth'}); });
-  el('btnRequest').addEventListener('click', function(){
-    var wantArea=el('wantArea').value.trim(); var current=el('currentLocation').value.trim(); var phone=el('tenantPhone').value.trim(); var moveDate=e
+  <!-- TENANT FORM -->
+  <div id="form-tenant" class="card">
+    <h2>Find Your New House</h2>
+    <p class="muted">Fill this form - we will show you only houses that match you.</p>
+    <div class="row">
+      <div><label>Where do you want to find a house? *</label><input id="t_area" placeholder="e.g. Migori Town, Kihancha"></div>
+      <div><label>Where are you currently located? *</label><input id="t_current" placeholder="e.g. Nairobi"></div>
+      <div><label>Phone Number *</label><input id="t_phone" placeholder="07..."></div>
+      <div><label>Day you want to enter *</label><input id="t_date" type="date"></div>
+      <div><label>House Type</label><select id="t_type"><option value="">Any Type</option><option>Single Room</option><option>Bedsitter</option><option>1 Bedroom</option><option>2 Bedroom</option><option>3 Bedroom</option></select></div>
+      <div><label>Your Budget</label><select id="t_budget"><option value="100000">Any Budget</option><option value="5000">Up to Ksh 5,000</option><option value="8000">Up to Ksh 8,000</option><option value="12000">Up to Ksh 12,000</option><option value="20000">Up to Ksh 20,000</option></select></div>
+    </div>
+    <div class="flex" style="margin-top:14px">
+      <button class="btn btn-blue" onclick="searchHouses()">🔍 Search Houses For Me</button>
+      <button class="btn btn-green" onclick="sendRequest()">📩 Send My Request to Landlords</button>
+    </div>
+  </div>
+
+  <!-- LANDLORD FORM -->
+  <div id="form-landlord" class="card hidden">
+    <h2>Post Your House</h2>
+    <p class="muted">Your house goes to Waiting Approval. Admin approves it.</p>
+    <div class="row">
+      <div><label>Your Name (Landlord) *</label><input id="l_name" placeholder="e.g. Mama Otis"></div>
+      <div><label>Phone Number *</label><input id="l_phone" placeholder="07..."></div>
+      <div><label>Location *</label><input id="l_location" placeholder="e.g. Kihancha, Behind Market"></div>
+      <div><label>Area *</label><input id="l_area" placeholder="e.g. Kihancha"></div>
+      <div><label>House Type *</label><select id="l_type"><option>Bedsitter</option><option>1 Bedroom</option><option>2 Bedroom</option><option>3 Bedroom</option><option>Single Room</option></select></div>
+      <div><label>Rent per Month (Ksh) *</label><input id="l_rent" type="number" placeholder="e.g. 500
