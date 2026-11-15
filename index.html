@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
   try { houses = JSON.parse(localStorage.getItem('nyumba_houses')) || defaultHouses; } catch(e){ houses = defaultHouses; }
   try { requests = JSON.parse(localStorage.getItem('nyumba_requests')) || []; } catch(e){ requests = []; }
 function save(){ try{ localStorage.setItem('nyumba_houses', JSON.stringify(houses)); localStorage.setItem('nyumba_requests', JSON.stringify(requests)); }catch(e){} try{ db.collection('nyumba').doc('data').set({houses: houses, requests: requests}); }catch(e){} }
+  db.collection('nyumba').doc('data').get().then(doc=>{ if(doc.exists){ let d=doc.data(); if(d.houses) houses=d.houses; if(d.requests) requests=d.requests; render(); } }).catch(e=>{});
   function el(id){ return document.getElementById(id); }
   function showTab(tabId, btn){
     document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
